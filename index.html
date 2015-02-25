@@ -83,8 +83,6 @@
       // Adds click handler to submit button and prepares
       // to send a message to our service worker with the
       // current markdown
-      // function submitMarkdown() {
-      //   console.log("Adding click event...");
         if (navigator.serviceWorker.controller) {
           console.log("Controller found");
             document.querySelector('#submit-markdown').addEventListener('click', function() {
@@ -98,15 +96,11 @@
                 console.log("ERR! ", err);
               }); // If the promise rejects, then setStatus will be called with the error.
             });
-        }
-      // }
-
-
-      // Check for Service Workers and register sw-assets
-      if ('serviceWorker' in navigator) {
+        } else if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw-assets.js', {
           scope: './'
         }).then(function(reg) {
+          console.log("registered");
           initiatePreview();
         });
       }
